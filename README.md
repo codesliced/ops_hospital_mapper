@@ -2,7 +2,7 @@
 
 Hospitals charge drastically different amounts for the same procedure. In order to make this data accessible to the public and promote a discussion of the burgeoning cost of healthcare in the US, we've combined the recently released Medicare chargemaster data with government measures of quality, such as patient survey results and outcomes of care, geocoded all addresses, and mapped on Google Maps.
 
-Live demo: [http://hospital-mapper.herokuapp.com](http://hospital-mapper.herokuapp.com)
+Live demo: [http://hospitally.codesliced.com](http://hospitally.codesliced.com)
 
 ### Team
 
