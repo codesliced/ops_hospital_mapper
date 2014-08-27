@@ -8,7 +8,7 @@ FactoryGirl.define do
 		total_discharges		200
 		avg_covered_charges 123.45
 		avg_total_payments   12.34
-		cost_index					20
+		# cost_index					20
 	end
 
 end

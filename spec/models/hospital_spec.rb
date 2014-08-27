@@ -32,9 +32,9 @@ describe Hospital do
 		end
 
 
-		it 'should return correct scaled total cost index' do
-			@hospital.scaled_total_cost_index.should eq(24)
-		end
+		# it 'should return correct scaled total cost index' do
+		# 	@hospital.scaled_total_cost_index.should eq(24)
+		# end
 
 	end
 end

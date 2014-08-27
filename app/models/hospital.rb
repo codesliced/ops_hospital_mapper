@@ -1,5 +1,5 @@
 class Hospital < ActiveRecord::Base
-  attr_accessible :provider_id, :provider_name, :provider_street_address, :provider_city, :provider_state, :provider_zip_code, :hrr, :total_discharges, :count_drgs, :average_covered_charges, :average_total_payments, :latitude, :longitude, :total_cost_index
+  attr_accessible :provider_id, :provider_name, :provider_street_address, :provider_city, :provider_state, :provider_zip_code, :hrr, :total_discharges, :count_drgs, :average_covered_charges, :average_total_payments, :latitude, :longitude
 
   geocoded_by :full_address
 
@@ -31,23 +31,23 @@ class Hospital < ActiveRecord::Base
       state: state, hospital_id: provider_id, title: drg_def}
   end
 
-  def complication_cost_correlation
-    acc=[]
-    rdstc =[]
+  # def complication_cost_correlation
+  #   acc=[]
+  #   rdstc =[]
 
-    Hospital.all.each do |h|
-      unless h.complication.nil?
-        rdstc << h.complication.R_D_S_T_C
-        acc << h.average_covered_charges
-      end
-    end
+  #   Hospital.all.each do |h|
+  #     unless h.complication.nil?
+  #       rdstc << h.complication.R_D_S_T_C
+  #       acc << h.average_covered_charges
+  #     end
+  #   end
 
-    R.acc = acc
-    R.rdstc = rdstc
+  #   R.acc = acc
+  #   R.rdstc = rdstc
 
-    R.eval 'costbenefit = cor(acc, rdstc)'
-    costbenefit = R.pull 'costbenefit'
-  end
+  #   R.eval 'costbenefit = cor(acc, rdstc)'
+  #   costbenefit = R.pull 'costbenefit'
+  # end
 
   def outcomebox_on_click
     unless self.outcome.nil?
@@ -84,13 +84,12 @@ class Hospital < ActiveRecord::Base
   def self.find_hospitals_for_map(hospitals)
     all_hospitals = []
     hospitals.each do |hospital|
-      acc = (hospital.total_cost_index + 100) / 5
+      # acc = (hospital.total_cost_index + 100) / 5
 
       all_hospitals << {provider_name: hospital.provider_name, 
                         latitude: hospital.latitude, 
                         longitude: hospital.longitude, 
-                        provider_id: hospital.provider_id, 
-                        acc: acc}
+                        provider_id: hospital.provider_id}
 
       unless survey_and_outcome_data_missing?(hospital)
         thumbs_up = (hospital.patient_survey.recommend_y + 
